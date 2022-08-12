@@ -55,7 +55,7 @@ pipeline {
                 // sh "docker run -d $imagename:$BUILD_NUMBER"
                 // sh "docker ps"
                 // sh "docker images"
-                sh "touch /home/ec2-user/test.txt"
+                sh "sudo touch /home/ec2-user/test.txt"
               }
             }
           }
