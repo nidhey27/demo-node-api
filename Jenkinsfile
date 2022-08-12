@@ -54,9 +54,12 @@ pipeline {
               sshagent(credentials : ['ssh_awsec2_secret']){
                 // sh "docker run -d $imagename:$BUILD_NUMBER"
                 // sh "docker ps"
+                // docker stop $(docker ps -a -q)
+                // docker rm $(docker ps -a -q)
                 // sh "docker images"
-                sh "ssh -o StrictHostKeyChecking=no -l ec2-user 35.172.134.230 'whoami'"
-                sh "ssh -o StrictHostKeyChecking=no -l ec2-user 35.172.134.230 'docker run -d $imagename:$BUILD_NUMBER'"
+                sh "ssh -o StrictHostKeyChecking=no -l ec2-user 35.172.134.230 'docker stop $(docker ps -a -q)'"
+                sh "ssh -o StrictHostKeyChecking=no -l ec2-user 35.172.134.230 'docker rm $(docker ps -a -q)'"
+                sh "ssh -o StrictHostKeyChecking=no -l ec2-user 35.172.134.230 'docker run -d -p 3000:3000 $imagename:$BUILD_NUMBER'"
 
                 // 
               }
