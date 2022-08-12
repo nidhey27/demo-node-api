@@ -52,7 +52,9 @@ pipeline {
           steps{
             script{
               sshagent(credentials : ['ssh_awsec2_secret']){
-                sh "docker run $imagename:$BUILD_NUMBER"
+                sh "docker run -d $imagename:$BUILD_NUMBER"
+                sh "docker ps"
+                sh "docker images"
               }
             }
           }
