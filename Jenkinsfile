@@ -55,7 +55,7 @@ pipeline {
                 // sh "docker run -d $imagename:$BUILD_NUMBER"
                 // sh "docker ps"
                 // sh "docker images"
-                sh "hostname -I | awk '{print $1}'"
+                sh "hostname -I"
                 // 
               }
             }
