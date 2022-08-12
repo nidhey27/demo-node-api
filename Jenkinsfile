@@ -56,6 +56,7 @@ pipeline {
                 // sh "docker ps"
                 // sh "docker images"
                 sh "hostname -I | awk '{print $1}'"
+                // 
               }
             }
           }
