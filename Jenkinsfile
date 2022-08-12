@@ -55,7 +55,8 @@ pipeline {
                 // sh "docker run -d $imagename:$BUILD_NUMBER"
                 // sh "docker ps"
                 // sh "docker images"
-                sh "hostname -I"
+                sh "ssh -o StrictHostKeyChecking=no -l ec2-user 35.172.134.230 'whoami'"
+
                 // 
               }
             }
