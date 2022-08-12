@@ -40,12 +40,22 @@ pipeline {
             }
           }
         }
-            stage('Remove Unused docker image') {
-              steps{
-                sh "docker rmi $imagename:$BUILD_NUMBER"
-                 sh "docker rmi $imagename:latest"
-        
+        stage('Remove Unused docker image') {
+          steps{
+            sh "docker rmi $imagename:$BUILD_NUMBER"
+              sh "docker rmi $imagename:latest"
+    
+          }
+        }
+        // 	ssh_awsec2_secret
+        stage('Deployment') {
+          steps{
+            script{
+              sshagent(credentials : ['ssh_awsec2_secret']){
+                sh "docker run $imagename:$BUILD_NUMBER"
               }
             }
+          }
+        }
     }
 }
