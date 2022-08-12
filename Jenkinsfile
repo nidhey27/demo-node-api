@@ -57,8 +57,8 @@ pipeline {
                 // docker stop $(docker ps -a -q)
                 // docker rm $(docker ps -a -q)
                 // sh "docker images"
-                sh "ssh -o StrictHostKeyChecking=no -l ec2-user 35.172.134.230 'docker stop $(docker ps -a -q)'"
-                sh "ssh -o StrictHostKeyChecking=no -l ec2-user 35.172.134.230 'docker rm $(docker ps -a -q)'"
+                sh """ ssh -o StrictHostKeyChecking=no -l ec2-user 35.172.134.230 'docker stop $(docker ps -a -q)' """
+                sh """ ssh -o StrictHostKeyChecking=no -l ec2-user 35.172.134.230 'docker rm $(docker ps -a -q)' """
                 sh "ssh -o StrictHostKeyChecking=no -l ec2-user 35.172.134.230 'docker run -d -p 3000:3000 $imagename:$BUILD_NUMBER'"
 
                 // 
